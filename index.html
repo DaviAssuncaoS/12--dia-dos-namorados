@@ -229,7 +229,6 @@
             musica.currentTime = 25;
             musica.play().catch(() => {
                 document.body.addEventListener('click', function playAudio() {
-                    musica.currentTime = 25;
                     musica.play();
                     document.body.removeEventListener('click', playAudio);
                 });
