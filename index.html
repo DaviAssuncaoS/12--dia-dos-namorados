@@ -11,10 +11,10 @@
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(270deg, #F288A4,#F4C9CA, #F2F2F2);
+            background: linear-gradient(270deg, #ffffff, #FFE3E3, #FDE8E9, #ffffff);
             background-size: 600% 600%;
             animation: gradientBG 15s ease infinite;
-            color: white;
+            color: #5B2C45;
             text-align: center;
             height: 100vh;
             overflow-x: hidden;
@@ -62,17 +62,20 @@
             font-family: 'Great Vibes', cursive;
             font-size: 2.5em;
             margin-top: 20px;
+            color: #A0616A;
         }
 
         .mensagem {
             margin: 20px auto;
             width: 90%;
             font-size: 1em;
+            color: #7D4C57;
         }
 
         .contador {
             font-size: 1.1em;
-            margin: 20px 0
+            margin: 20px 0;
+            color: #7D4C57;
         }
 
         .carrossel {
@@ -85,7 +88,7 @@
         .carrossel img {
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 200, 200, 0.6);
         }
 
         .musica {
@@ -99,8 +102,8 @@
 
         .botao-amor {
             margin-top: 20px;
-            background-color: white;
-            color: #a583c4;
+            background-color: #FFDADA;
+            color: #A0616A;
             padding: 12px 20px;
             font-size: 1em;
             border: none;
@@ -119,23 +122,24 @@
             background-color: rgba(0, 0, 0, 0.8);
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #5B2C45;
             z-index: 10;
             flex-direction: column;
             transition: opacity 0.5s ease;
         }
 
         .modal-content {
-            background-color: #a583c4;
+            background-color: #FFE3E3;
             padding: 20px;
             border-radius: 15px;
             font-size: 1.2em;
             margin-bottom: 20px;
+            color: #7D4C57;
         }
 
         .fechar-modal {
-            background-color: white;
-            color: #a583c4;
+            background-color: #FFDADA;
+            color: #A0616A;
             border: none;
             padding: 10px 20px;
             border-radius: 20px;
@@ -172,7 +176,7 @@
     </div>
 
     <div class="musica" style="display: none;">
-        <audio id="musica" controls autoplay loop>
+        <audio id="musica" controls loop>
             <source src="musica_romantica.mp3" type="audio/mp3">
         </audio>
     </div>
@@ -221,7 +225,17 @@
         }, 10000);
 
         const musica = document.getElementById("musica");
-        musica.currentTime = 25;
+
+        window.addEventListener('load', () => {
+            musica.currentTime = 25;
+            musica.play().catch(() => {
+                document.body.addEventListener('click', function playAudio() {
+                    musica.currentTime = 25;
+                    musica.play();
+                    document.body.removeEventListener('click', playAudio);
+                });
+            });
+        });
 
         function mostrarMensagem() {
             const modal = document.getElementById("modal");
