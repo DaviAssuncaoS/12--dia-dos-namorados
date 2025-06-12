@@ -226,7 +226,6 @@
         const musica = document.getElementById("musica");
 
         window.addEventListener('load', () => {
-            musica.currentTime = 25;
             musica.play().catch(() => {
                 document.body.addEventListener('click', function playAudio() {
                     musica.play();
